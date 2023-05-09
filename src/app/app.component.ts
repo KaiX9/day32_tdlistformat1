@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ToDo } from './models';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'workshop32';
+  
+  todos: ToDo[] = []
+
+  receiveList(t: ToDo) {
+    this.todos.push(t)
+  }
+
 }

@@ -1,0 +1,68 @@
+<h1>ToDo</h1>
+
+<form [formGroup]="toDoForm" (submit)="saveForm()">
+    <table>
+        <tr>
+            <td>Title:</td>
+            <td>
+                <input type="text" size="30" placeholder="Title" formControlName="title">
+            </td>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td>
+                <input type="text" size="30" placeholder="Name" formControlName="name">
+            </td>
+        </tr>
+        <br>
+        <tr>
+            <td>
+                <button type="submit">Save</button>
+            </td>
+            <td>
+                <button type="button" (click)="addTask()">Add Task</button>
+            </td>
+        </tr>
+    </table>
+    <table *ngIf="taskArray.length > 0 else emptyArray">
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Priority</th>
+                <th>Due Date</th>
+            </tr>
+        </thead>
+        <tbody formArrayName="tasks">
+            <tr *ngFor="let t of taskArray.controls; let i = index" [formGroupName]="i">
+                <td>
+                    <input type="text" size="30" formControlName="task">
+                </td>
+                <td>
+                    <div>
+                      <input type="radio" formControlName="priority" value="low">
+                      <label for="low">
+                        Low
+                      </label>
+                      <input type="radio" formControlName="priority" value="med">
+                      <label for="med">
+                        Med
+                      </label>
+                      <input type="radio" formControlName="priority" value="high">
+                      <label for="high">
+                        High
+                      </label>
+                    </div>
+                </td>
+                <td>
+                    <input type="datetime-local" size="30" formControlName="due">
+                </td>
+                <td>
+                    <button type="button" (click)="deleteTask(i)">X</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+<ng-template #emptyArray>
+    <h2>No tasks added!</h2>
+</ng-template>

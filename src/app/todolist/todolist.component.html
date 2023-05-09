@@ -1,0 +1,10 @@
+<h1>ToDo</h1>
+
+<div *ngIf="todos.length > 0 else emptyArr">
+    <h3 *ngFor="let t of todos">Number of tasks to do: ({{ t.tasks.length }})</h3>
+</div>
+<button type="button" (click)="clearTasks()">X</button>
+<button>Edit</button>
+<ng-template #emptyArr>
+    <h3>Your ToDo list is empty</h3>
+</ng-template>
