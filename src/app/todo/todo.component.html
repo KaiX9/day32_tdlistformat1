@@ -1,29 +1,45 @@
-<h1>ToDo</h1>
+<h1>Create ToDo</h1>
 
 <form [formGroup]="toDoForm" (submit)="saveForm()">
     <table>
         <tr>
-            <td>Title:</td>
+            <td></td>
             <td>
-                <input type="text" size="30" placeholder="Title" formControlName="title">
+                <mat-form-field class="example-full-width" color="accent">
+                    <mat-label>Title</mat-label>
+                    <input matInput type="text" placeholder="Title" formControlName="title">
+                </mat-form-field>
+                <span *ngIf="invalidField('title')">
+                    Cannot be empty
+                </span>
             </td>
         </tr>
         <tr>
-            <td>Name:</td>
+            <td></td>
             <td>
-                <input type="text" size="30" placeholder="Name" formControlName="name">
+                <mat-form-field class="example-full-width" color="accent">
+                    <mat-label>Name</mat-label>
+                    <input matInput type="text" size="30" placeholder="Name" formControlName="name">
+                </mat-form-field>
+                <span *ngIf="invalidField('name')">
+                    At least 3 char
+                </span>
             </td>
         </tr>
         <br>
         <tr>
+            <td></td>
             <td>
-                <button type="submit">Save</button>
-            </td>
-            <td>
-                <button type="button" (click)="addTask()">Add Task</button>
+                <button type="submit" mat-icon-button color="primary" [disabled]="invalidForm()">
+                    <mat-icon>save</mat-icon><h5>Save</h5>
+                </button>
+                <button type="button" (click)="addTask()" mat-icon-button color="primary" aria-label="Example icon button with a menu icon">
+                    <mat-icon>add_task</mat-icon><h5>Add Task</h5>
+                </button>
             </td>
         </tr>
     </table>
+    <br><br>
     <table *ngIf="taskArray.length > 0 else emptyArray">
         <thead>
             <tr>
@@ -35,7 +51,13 @@
         <tbody formArrayName="tasks">
             <tr *ngFor="let t of taskArray.controls; let i = index" [formGroupName]="i">
                 <td>
-                    <input type="text" size="30" formControlName="task">
+                    <mat-form-field class="example-full-width" color="accent">
+                        <mat-label>Do what?</mat-label>
+                        <input matInput type="text" formControlName="task">
+                    </mat-form-field>
+                    <span *ngIf="invalidField('task')">
+                        Have to be more than 5 char
+                    </span>
                 </td>
                 <td>
                     <div>
@@ -52,17 +74,27 @@
                         High
                       </label>
                     </div>
+                    <span *ngIf="invalidField('priority')">
+                        Required field
+                    </span>
                 </td>
                 <td>
                     <input type="datetime-local" size="30" formControlName="due">
+                    <span *ngIf="invalidField('due')">
+                        Required field
+                    </span>
                 </td>
                 <td>
-                    <button type="button" (click)="deleteTask(i)">X</button>
+                    <button type="button" (click)="deleteTask(i)" mat-icon-button color="warn">
+                        <mat-icon>remove</mat-icon><h5>Remove</h5>
+                    </button>
                 </td>
             </tr>
         </tbody>
     </table>
 </form>
 <ng-template #emptyArray>
+    <br>
+    <br>
     <h2>No tasks added!</h2>
 </ng-template>

@@ -1,4 +1,10 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button color="accent" aria-label="Example icon button with a menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>My ToDo List</span>
+</mat-toolbar>
 <div class="container">
-  <app-todo (parseToList)="receiveList($event)"></app-todo>
-  <app-todolist [todos]="todos"></app-todolist>
+  <app-todo (parseToList)="receiveList($event)" [todo]="todo"></app-todo>
+  <app-todolist [todos]="todos" (onSelectedTodo)="selectedTask($event)"></app-todolist>
 </div>

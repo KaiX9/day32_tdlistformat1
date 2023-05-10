@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { Task, ToDo } from '../models';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-todolist',
@@ -17,8 +18,15 @@ export class TodolistComponent implements OnInit {
   @Input()
   todos: ToDo[] = []
 
-  clearTasks() {
-    this.todos.length = 0
+  @Output()
+  onSelectedTodo = new Subject<ToDo>()
+
+  clearTasks(i: number) {
+    this.todos.splice(i, 1)
+  }
+
+  editTask(i: number) {
+    this.onSelectedTodo.next(this.todos[i])
   }
   
 }

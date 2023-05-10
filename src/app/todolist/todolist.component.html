@@ -1,10 +1,17 @@
-<h1>ToDo</h1>
+<h1>Saved List</h1>
 
 <div *ngIf="todos.length > 0 else emptyArr">
-    <h3 *ngFor="let t of todos">Number of tasks to do: ({{ t.tasks.length }})</h3>
+    <div *ngFor="let t of todos; let i = index">
+    <br>
+    <h3>{{ t.title }}: ({{ t.tasks.length }})</h3>
+<button type="button" (click)="clearTasks(i)" mat-icon-button color="warn">
+    <mat-icon>delete</mat-icon><h5>Delete</h5>
+</button>
+<button type="button" (click)="editTask(i)" mat-icon-button color="primary">
+    <mat-icon>edit</mat-icon><h5>Edit</h5>
+</button>
+    </div>
 </div>
-<button type="button" (click)="clearTasks()">X</button>
-<button>Edit</button>
 <ng-template #emptyArr>
     <h3>Your ToDo list is empty</h3>
 </ng-template>
