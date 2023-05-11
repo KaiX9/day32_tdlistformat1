@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ToDo } from './models';
+import { TodoComponent } from './todo/todo.component';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,9 @@ export class AppComponent {
   
   todos: ToDo[] = []
   todo: ToDo | null = null
+
+  @ViewChild(TodoComponent)
+  todoComp!: TodoComponent
 
   receiveList(t: ToDo) {
     const index = this.todos.findIndex(
@@ -25,4 +29,9 @@ export class AppComponent {
     this.todo = t
     console.info('>>> selected task: ', this.todo)
   }
+
+  addTask() {
+    this.todoComp.taskArray.push(this.todoComp.createTask(null))
+  }
+
 }

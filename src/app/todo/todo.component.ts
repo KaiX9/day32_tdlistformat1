@@ -39,9 +39,9 @@ export class TodoComponent implements OnInit {
     this.toDoForm = this.createFormWithBuilder()
   }
 
-  addTask() {
-    this.taskArray.push(this.createTask(null))
-  }
+  // addTask() {
+  //   this.taskArray.push(this.createTask(null))
+  // }
 
   deleteTask(i: number) {
     this.taskArray.removeAt(i)
@@ -64,7 +64,7 @@ export class TodoComponent implements OnInit {
     })
   }
 
-  private createTask(t: Task | null): FormGroup {
+  createTask(t: Task | null): FormGroup {
     return this.fb.group({
       task: this.fb.control<string>(!!t ? t.task : '', [ Validators.required, Validators.minLength(5) ]),
       priority: this.fb.control<string>(!!t ? t.priority : '', [ Validators.required ]),

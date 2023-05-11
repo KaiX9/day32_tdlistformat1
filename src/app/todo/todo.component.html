@@ -34,10 +34,11 @@
                     <mat-icon>save</mat-icon>
                     Save
                 </button>
-                <button type="button" (click)="addTask()" mat-fab extended color="primary">
+                <!-- <button type="button" (click)="addTask()" mat-fab extended color="primary">
                     <mat-icon>add_task</mat-icon>
                     Add Task
-                </button>
+                </button> -->
+                <ng-content></ng-content>
             </td>
         </tr>
     </table>
