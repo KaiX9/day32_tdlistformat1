@@ -30,11 +30,13 @@
         <tr>
             <td></td>
             <td>
-                <button type="submit" mat-icon-button color="primary" [disabled]="invalidForm()">
-                    <mat-icon>save</mat-icon><h5>Save</h5>
+                <button type="submit" mat-fab extended color="accent" [disabled]="invalidForm()">
+                    <mat-icon>save</mat-icon>
+                    Save
                 </button>
-                <button type="button" (click)="addTask()" mat-icon-button color="primary" aria-label="Example icon button with a menu icon">
-                    <mat-icon>add_task</mat-icon><h5>Add Task</h5>
+                <button type="button" (click)="addTask()" mat-fab extended color="primary">
+                    <mat-icon>add_task</mat-icon>
+                    Add Task
                 </button>
             </td>
         </tr>
@@ -85,8 +87,9 @@
                     </span>
                 </td>
                 <td>
-                    <button type="button" (click)="deleteTask(i)" mat-icon-button color="warn">
-                        <mat-icon>remove</mat-icon><h5>Remove</h5>
+                    <button type="button" (click)="deleteTask(i)" mat-fab extended color="warn">
+                        <mat-icon>remove</mat-icon>
+                        Remove
                     </button>
                 </td>
             </tr>
